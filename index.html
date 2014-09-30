@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="searchManager">
+<head>
+	<title>Refactoring API</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="js/angular.min.js"></script>
+</head>
+<body>
+	<div id="wrapper" ng-controller="searchController as bookSearch">		
+		<div id="headerContainer">
+			<div id="header">
+					<i class="search"></i>
+				<a href="index.html"><h1><span class="stylHead">IT</span> e-Books</h1></a>
+			
+			</div>
+			<!-- Search Area -->
+			<div class="search-area">
+				<div class="groupSearch">
+					<input id="findEbook" class"search-area-input" type="text" placeholder="Search..." ng-model="eBook">
+
+					<button id="searchEbook" class="search-area-btn" ng-click="findEbook()">Go</button>
+					<!-- result of input -->
+				</div>
+			</div>
+		</div>
+
+		<!--End of Search Area -->
+		<!-- Result area -->
+	 	<div id="resultWindow" ng-show="Results">
+	 		<ul id="bookShelf" ng-repeat="found in foundBooks" >
+	 			<li ng-model="bookID">
+	 				<p class="imgBook"><img ng-src="{{found.Image}}"></p>
+					<h3>
+						<a href="" ng-click="getBookDetails(found.ID)"><span>{{found.Title}}</span></a>
+					</h3>
+					<p class="bookDescription"><span>{{found.Description}}</span></p>
+	 			</li>
+	 		</ul>	 	
+	 	</div>
+
+	 	<!-- Book Details -->
+	 	<div id="bookDetails" ng-model="bookDetails" ng-show="Details" >
+	 		<h2 class="Heading">{{bookDetails.Title}}</h2>
+	 		<p class="bookImg"><img ng-src="{{bookDetails.Image}}" alt="E-book Image"></p>
+	 		<p class="bookDescription"><h4>Book Description</h4>{{bookDetails.Description}}</p>;
+	 		<p>
+	 			<h4>Book Details</h4>
+	 		</p>
+	 		<p class="subDetails">
+			<p>
+				<label>Publisher:</label>bookDetails.Publisher
+			</p>
+			<p>
+				<label>By: </label>bookDetails.Author
+			</p>
+			<p>
+				<label>Year: </label>bookDetails.Year</p>
+			<p>
+				<label>Pages: </label>bookDetails.Page</p>
+			<p>
+				<label>Language: </label>English</p>
+			<p>
+				<label>File Format: </label>PDF</p>
+			</p>
+
+			<a ng-href="{{bookDetails.Download}}"><button class="pdf">Download</button></a>
+	 	
+	 	</div>
+	 </div>
+	<!-- JS functionality -->
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
